@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KamiRage • Головна</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700;800&family=Black+Ops+One&family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0A0A0C;
+            min-height: 100vh;
+            color: #ffffff;
+            padding-top: 80px;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Кастомний скролбар для WebKit-браузерів */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #000066, #00008B);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #00008B, #0000FF);
+            box-shadow: 0 0 10px rgba(0, 0, 139, 0.5);
+        }
+
+        /* Кастомний скролбар для Firefox */
+        html {
+            scrollbar-color: #00008B rgba(10, 10, 12, 0.8);
+            scrollbar-width: thin;
+        }
+
+        /* Хедер */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: transparent;
+            padding: 1.25rem 1rem;
+            transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+        }
+
+        header.scrolled {
+            background: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        /* Навігація */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Логотип з підсвіткою */
+        .logo {
+            font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            text-decoration: none;
+            color: #ffffff;
+            position: relative;
+            transition: all 0.3s ease;
+            text-shadow: 
+                0 0 10px rgba(0, 0, 139, 0.5),
+                0 0 20px rgba(0, 0, 139, 0.3),
+                0 0 30px rgba(0, 0, 139, 0.1);
+            animation: logoPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoPulse {
+            0% {
+                text-shadow: 
+                    0 0 10px rgba(0, 0, 139, 0.5),
+                    0 0 20px rgba(0, 0, 139, 0.3),
+                    0 0 30px rgba(0, 0, 139, 0.1);
+            }
+            100% {
+                text-shadow: 
+                    0 0 15px rgba(0, 0, 139, 0.8),
+                    0 0 25px rgba(0, 0, 139, 0.5),
+                    0 0 35px rgba(0, 0, 139, 0.3);
+            }
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -10px;
+            right: -10px;
+            bottom: -5px;
+            background: linear-gradient(45deg, transparent, rgba(0, 0, 139, 0.1), transparent);
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover::before {
+            opacity: 1;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            color: #00008B;
+            text-shadow: 
+                0 0 20px rgba(0, 0, 139, 1),
+                0 0 30px rgba(0, 0, 139, 0.7),
+                0 0 40px rgba(0, 0, 139, 0.5);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #000066, #00008B, #000066);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Центральна навігація */
+        .nav-center {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-center a {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .nav-center a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Права частина хедера */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Іконки */
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: #a1a1aa;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Кнопка входу */
+        .auth-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #a1a1aa;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            color: #ffffff;
+            border-color: #00008B;
+            background: rgba(0, 0, 139, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 139, 0.3);
+        }
+
+        /* Кнопка меню (гамбургер) */
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #a1a1aa;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Контейнер для основного контенту та відео */
+        .content-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12rem 1rem;
+            gap: 2rem;
+        }
+
+        /* Основний контент (зліва) */
+        .main-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        /* Стильний заголовок "Ласкаво просимо" */
+        .main-content h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #e0e0e0, #ffffff);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: welcomeShine 4s ease-in-out infinite, fadeInUp 0.6s ease-out forwards;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.05em;
+            display: inline-block;
+            line-height: 1.2;
+            opacity: 0;
+        }
+
+        @keyframes welcomeShine {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .main-content h1::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00008B, transparent);
+            border-radius: 2px;
+            animation: underlineGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes underlineGlow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scaleX(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scaleX(1);
+            }
+        }
+
+        .main-content .gradient-text-container {
+            display: block;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+            animation: fadeInLeft 0.6s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .main-content .gradient-text {
+            font-size: inherit;
+            font-weight: inherit;
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(45deg, #000066, #00008B, #000066, #00008B);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: kamiRageGlow 2s ease-in-out infinite alternate;
+            position: relative;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes kamiRageGlow {
+            0% {
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 10px rgba(0, 0, 139, 0.5));
+            }
+            100% {
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 20px rgba(0, 0, 139, 0.8));
+            }
+        }
+
+        /* Стильний опис */
+        .main-content p {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, #c1c1c1, #a1a1aa, #c1c1c1);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textGlow 5s ease-in-out infinite, fadeIn 0.8s ease-out 0.4s forwards;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            position: relative;
+            opacity: 0;
+        }
+
+        @keyframes textGlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Основна кнопка "Дізнайся більше!" */
+        .main-content .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #000066, #00008B);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 139, 0.3);
+            animation: scaleIn 0.6s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .main-content .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .main-content .action-btn:hover::before {
+            left: 100%;
+        }
+
+        .main-content .action-btn:hover {
+            background: linear-gradient(135deg, #6b7280, #9ca3af);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(107, 114, 128, 0.3);
+        }
+
+        /* Вторинна кнопка "Почати" */
+        .main-content .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: #00008B;
+            padding: 1rem 2rem;
+            border: 2px solid #00008B;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+
+        .main-content .secondary-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000066, #00008B);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .main-content .secondary-btn:hover::before {
+            left: 0;
+        }
+
+        .main-content .secondary-btn:hover {
+            color: #ffffff;
+            border-color: #00008B;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 139, 0.3);
+        }
+
+        /* Секція відео (праворуч) */
+        .video-section {
+            flex: 1;
+            max-width: 500px;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            overflow: visible;
+            animation: fadeInRight 0.6s ease-out 1.2s forwards;
+            opacity: 0;
+        }
+
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            right: -40px;
+            bottom: -40px;
+            background: radial-gradient(circle at center, rgba(0, 0, 139, 0.2), rgba(0, 0, 139, 0.12), rgba(0, 0, 139, 0.05), transparent 80%);
+            border-radius: 40px;
+            z-index: -1;
+            animation: videoGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes videoGlow {
+            0% {
+                opacity: 0.7;
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.02) rotate(1deg);
+            }
+        }
+
+        .video-section iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 16px;
+            min-height: 300px;
+        }
+
+        .video-section .new-badge {
+            position: absolute;
+            bottom: -0.3rem;
+            right: -0.3rem;
+            background: linear-gradient(90deg, #000066, #00008B);
+            color: #ffffff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 139, 0.3);
+            transform: rotate(-12deg);
+            transform-origin: center;
+            animation: scaleInBadge 0.6s ease-out 1.4s forwards;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        /* Анімації появи */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scaleInBadge {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotate(-12deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(-12deg);
+            }
+        }
+
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Секція "Інформація про міт" */
+        .features-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .features-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff, #e0e0e0, #ffffff);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: welcomeShine 4s ease-in-out infinite, fadeInUp 0.6s ease-out forwards;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            opacity: 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            position: relative;
+        }
+
+        .feature-card.visible {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 139, 0.3);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+            color: #00008B;
+        }
+
+        .feature-card h3 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #c1c1c1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card .new-badge {
+            position: absolute;
+            bottom: -0.3rem;
+            right: -0.3rem;
+            background: linear-gradient(90deg, #000066, #00008B);
+            color: #ffffff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 139, 0.3);
+            transform: rotate(-12deg);
+            transform-origin: center;
+            animation: scaleInBadge 0.6s ease-out forwards;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .feature-card.visible .new-badge {
+            animation-delay: 0.2s;
+        }
+
+        /* Футер із копірайтом */
+        .footer {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            text-align: center;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .copyright {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            background: linear-gradient(90deg, #000066, #00008B, #000066);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 3s ease-in-out infinite, fadeInUp 0.6s ease-out forwards;
+            text-shadow: 0 0 10px rgba(0, 0, 139, 0.3);
+            opacity: 0;
+        }
+
+        /* Мобільне меню */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 12, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            z-index: 40;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.75rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            color: #ffffff;
+            background: rgba(0, 0, 139, 0.1);
+        }
+
+        .mobile-auth {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-auth .auth-btn {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Мобільна адаптивність */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .auth-btn {
+                display: none;
+            }
+
+            .menu-btn {
+                display: flex;
+            }
+
+            .content-container {
+                flex-direction: column;
+                padding: 6rem 1rem;
+                gap: 3rem;
+            }
+
+            .main-content {
+                text-align: center;
+            }
+
+            .main-content h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .main-content .gradient-text-container {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .main-content p {
+                font-size: 1.1rem;
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            .main-content .action-btn,
+            .main-content .secondary-btn {
+                display: block;
+                margin: 0 auto 1rem;
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+
+            .video-section {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .video-section::before {
+                top: -30px;
+                left: -30px;
+                right: -30px;
+                bottom: -30px;
+                border-radius: 30px;
+            }
+
+            .video-section .new-badge {
+                bottom: -0.2rem;
+                right: -0.2rem;
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .features-title {
+                font-size: 2rem;
+            }
+
+            .feature-card .new-badge {
+                bottom: -0.2rem;
+                right: -0.2rem;
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+            }
+
+            .copyright {
+                font-size: 0.9rem;
+            }
+
+            /* Кастомний скролбар для мобільних */
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-container {
+                padding: 5rem 1rem;
+            }
+
+            .main-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .main-content .gradient-text-container {
+                font-size: 2.2rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .video-section::before {
+                top: -20px;
+                left: -20px;
+                right: -20px;
+                bottom: -20px;
+                border-radius: 25px;
+            }
+
+            .features-title {
+                font-size: 1.8rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .feature-card p {
+                font-size: 0.9rem;
+            }
+
+            .feature-card .new-badge {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.4rem;
+            }
+
+            .copyright {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="#" class="logo"><span class="gradient-text" data-text="KamiRage">KamiRage</span></a>
+            
+            <ul class="nav-center">
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="meet.html">Міт</a></li>
+            </ul>
+            
+            <div class="nav-right">
+                <a href="https://t.me/kamirage" class="icon-btn" aria-label="Telegram" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-text">
+                        <path d="M17 6.1H3"></path>
+                        <path d="M21 12.1H3"></path>
+                        <path d="M15.1 18H3"></path>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@CidKagenousq" class="icon-btn" aria-label="YouTube" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-youtube">
+                        <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path>
+                        <path d="m10 15 5-3-5-3z"></path>
+                    </svg>
+                </a>
+                <a href="#" class="auth-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" x2="3" y1="12" y2="12"></line>
+                    </svg>
+                    Вхід
+                </a>
+                <button class="menu-btn" aria-label="Menu" id="menu-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+                        <line x1="4" x2="20" y1="12" y2="12"></line>
+                        <line x1="4" x2="20" y1="6" y2="6"></line>
+                        <line x1="4" x2="20" y1="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Мобільне меню -->
+        <div class="mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="meet.html">Міт</a></li>
+            </ul>
+            <div class="mobile-auth">
+                <a href="#" class="auth-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" x2="3" y1="12" y2="12"></line>
+                    </svg>
+                    Вхід
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-container">
+        <div class="main-content">
+            <h1>Ласкаво просимо</h1>
+            <span class="gradient-text-container">до <span class="gradient-text">KamiRage</span></span>
+            <p>Приєднуйтесь до нашої епічної спільноти, де кожен день — це нова пригода! KamiRage — це місце, де ваші ідеї оживають, а позитивна енергія заряджає на максимум. Готові до незабутніх моментів?</p>
+            <div>
+                <a href="#" class="action-btn">Дізнайся більше!</a>
+                <a href="#" class="secondary-btn">Почати</a>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <iframe id="video-player" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <span class="new-badge">New</span>
+        </div>
+    </div>
+
+    <!-- Секція "Інформація про міт" -->
+    <div class="features-section">
+        <h2 class="features-title">Можливості в Міт</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                    <path d="M17 18a2 2 0 0 0-2-2 4 4 0 0 0-4 4 2 2 0 0 0-2 2"></path>
+                    <path d="M5 8a2 2 0 0 0-2 2 4 4 0 0 0 4 4 2 2 0 0 0 2-2"></path>
+                    <path d="M19 10a2 2 0 0 0 2-2 4 4 0 0 0-4-4 2 2 0 0 0-2 2"></path>
+                </svg>
+                <h3>Спільнота</h3>
+                <p>Приєднуйтесь до активної спільноти, де ви можете обмінюватися ідеями, знаходити однодумців і створювати незабутні моменти.</p>
+                <span class="new-badge">New</span>
+            </div>
+            <div class="feature-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <h3>Турніри</h3>
+                <p>Беріть участь у захоплюючих турнірах, змагайтеся з іншими гравцями та отримуйте унікальні нагороди.</p>
+                <span class="new-badge">New</span>
+            </div>
+            <div class="feature-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                    <polyline points="16 6 12 2 8 6"></polyline>
+                    <line x1="12" y1="2" x2="12" y2="15"></line>
+                </svg>
+                <h3>Контент</h3>
+                <p>Створюйте та діліться унікальним контентом, який надихає інших учасників спільноти.</p>
+                <span class="new-badge">New</span>
+            </div>
+            <div class="feature-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                    <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
+                    <path d="M12 14l3-3"></path>
+                    <path d="M12 14v-8"></path>
+                </svg>
+                <h3>Події</h3>
+                <p>Долучайтесь до ексклюзивних подій, які об’єднують гравців і створюють незабутні враження.</p>
+                <span class="new-badge">New</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер із копірайтом -->
+    <footer class="footer">
+        <p class="copyright">© 2025 KamiRage. All rights reversed.</p>
+    </footer>
+
+    <script>
+        // Плавний ефект скролу для хедера
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (header) {
+                const scrollPosition = window.scrollY;
+                if (scrollPosition > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        });
+
+        // Мобільне меню
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('open');
+            });
+
+            // Закриття меню при кліку поза ним
+            document.addEventListener('click', function(event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.remove('open');
+                }
+            });
+
+            // Закриття меню при зміні розміру екрану
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    mobileMenu.classList.remove('open');
+                }
+            });
+        }
+
+        // Анімація колонок при прокручуванні
+        const featureCards = document.querySelectorAll('.feature-card');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 200);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        featureCards.forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
